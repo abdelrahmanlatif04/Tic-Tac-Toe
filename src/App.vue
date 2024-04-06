@@ -3,7 +3,7 @@
     class="bg-purple-400 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
   >
     <h1
-      class="text-5xl font-semibold text-gray-200 absolute top-20 left-1/2 -translate-x-1/2"
+      class="text-5xl font-semibold text-gray-200 absolute top-20"
       @click="this.resetGame()"
     >
       Tic Tac Toe
