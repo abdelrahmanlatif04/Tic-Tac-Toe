@@ -1,33 +1,3 @@
-<template>
-  <div
-    class="bg-purple-400 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
-  >
-    <h1
-      class="text-5xl font-semibold text-gray-200 absolute top-20"
-      @click="this.resetGame()"
-    >
-      Tic Tac Toe
-    </h1>
-    <ul
-      class="flex flex-wrap flex-col w-80 justify-between content-between aspect-square"
-    >
-      <li
-        v-for="(cell, i) in cells"
-        :key="cell"
-        v-text="cells[i]"
-        @click="
-          play(i);
-          chooseWinner();
-        "
-        class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
-      ></li>
-    </ul>
-    <div
-      v-text="showResult(this.chooseWinner())"
-      class="result text-white text-3xl absolute bottom-28"
-    ></div>
-  </div>
-</template>
 
 <script>
 export default {
@@ -103,3 +73,36 @@ export default {
   },
 };
 </script>
+
+
+
+<template>
+  <div
+    class="bg-purple-400 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
+  >
+    <h1
+      class="text-5xl font-semibold text-gray-200 absolute top-20"
+      @click="this.resetGame()"
+    >
+      Tic Tac Toe
+    </h1>
+    <ul
+      class="flex flex-wrap flex-col w-80 justify-between content-between aspect-square"
+    >
+      <li
+        v-for="(cell, i) in cells"
+        :key="cell"
+        v-text="cells[i]"
+        @click="
+          play(i);
+          chooseWinner();
+        "
+        class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
+      ></li>
+    </ul>
+    <div
+    v-text="showResult(this.chooseWinner())"
+      class="result text-white text-3xl absolute bottom-28 font-semibold"
+    ></div>
+  </div>
+</template>
