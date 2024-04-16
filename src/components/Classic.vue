@@ -5,8 +5,8 @@
     <div
       class="text-white absolute flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
     >
-      <p v-text="resultMessage" class="text-4xl font-semibold rotate-180"></p>
-      <p v-text="resultMessage" class="text-4xl font-semibold"></p>
+      <p v-text="resultMessage" class="text-4xl font-semibold rotate-180 w-full text-center"></p>
+      <p v-text="resultMessage" class="text-4xl font-semibold w-full text-center"></p>
     </div>
     <ul
       class="flex flex-wrap relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
