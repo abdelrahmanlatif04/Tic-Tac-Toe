@@ -61,7 +61,7 @@ export default {
       setTimeout(() => {
         this.cells = ["", "", "", "", "", "", "", "", ""];
         this.round = "X";
-      }, 750);
+      }, 1000);
     },
     chooseWinner() {
       let winner = null;

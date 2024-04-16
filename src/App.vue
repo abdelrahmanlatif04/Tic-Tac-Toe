@@ -9,7 +9,7 @@
         @click="chooseMode(choice)"
         v-for="choice in choices"
         :key="choice"
-        class="transition-opacity duration-500 bg-transparent border-2 rounded-lg flex flex-col cursor-pointer"
+        class="transition-all duration-500 bg-transparent border-2 rounded-lg flex flex-col cursor-pointer"
       >
         <img class="p-2 pb-5" :src="choice.img" />
         <p
@@ -64,6 +64,6 @@ export default {
 
 <style scoped>
 ul:hover > :not(:hover) {
-  opacity: 0.1;
+  @apply opacity-20 border-transparent;
 }
 </style>
