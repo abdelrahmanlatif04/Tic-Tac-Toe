@@ -1,108 +1,69 @@
+// TODO: back-to-menu button in every page to get back to the choose-mode page 
+<template>
+  <div class="w-full h-[100vh] flex flex-col justify-center items-center">
+    <ul
+      class="sm:w-1/2 w-[165px] min-w-40 h-fit grid sm:gap-x-8 gap-x-4 gap-y-2 place-content-center grid-cols-1 sm:grid-cols-3"
+      v-if="!isChoiceSelected"
+    >
+      <li
+        @click="chooseMode(choice)"
+        v-for="choice in choices"
+        :key="choice"
+        class="transition-opacity duration-500 bg-transparent border-2 rounded-lg flex flex-col cursor-pointer"
+      >
+        <img class="p-2 pb-5" :src="choice.img" />
+        <p
+          v-text="choice.name"
+          class="mb-1 lg:text-3xl md:text-2xl sm:text-lg text-2xl text-center"
+        ></p>
+      </li>
+    </ul>
+    <Classic v-if="selectedChoice === 'Classic'" />
+    <Ultimate v-else-if="selectedChoice === 'Ultimate'" />
+    <Unlimited v-else-if="selectedChoice === 'Unlimited'" />
+  </div>
+</template>
 
 <script>
+import Ultimate from "./components/Ultimate.vue";
+import Unlimited from "./components/Unlimited.vue";
+import Classic from "./components/Classic.vue"
+import img1 from "./assets/infinity.png";
+import img2 from "./assets/classic.png";
+import img3 from "./assets/ultimate.png";
+
 export default {
   name: "App",
   data() {
     return {
-      cells: ["", "", "", "", "", "", "", "", ""],
-      round: "X",
+      choices: [
+        { name: "Unlimited", img: img1},
+        { name: "Classic", img: img2},
+        { name: "Ultimate", img: img3},
+      ],
+      selectedChoice: null,
     };
   },
+  computed: {
+    isChoiceSelected() {
+      return this.selectedChoice;
+    },
+  },
   methods: {
-    play(i) {
-      if (!this.cells[i] && !this.chooseWinner()) {
-        this.cells[i] = this.round;
-        this.switchRound();
-      }
+    chooseMode(selected) {
+      this.selectedChoice = selected.name;
     },
-    switchRound() {
-      this.round = this.round == "X" ? "O" : "X";
-    },
-    showResult(winner) {
-      if (winner == "X") {
-        this.resetGame();
-        return "player X won 🥳!!";
-      } else if (winner == "O") {
-        this.resetGame();
-        return "player O won 🥳!!";
-      } else if (winner == "draw") {
-        this.resetGame();
-        return "Draw 🤝 !!";
-      }
-    },
-    resetGame() {
-      setTimeout(() => {
-        location.reload();
-      }, 600);
-    },
-    chooseWinner() {
-      let winner = null;
-      let winnerComp = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
-      for (let i = 0; i < winnerComp.length; i++) {
-        if (
-          this.cells[winnerComp[i][0]] !== "" &&
-          this.cells[winnerComp[i][0]] === this.cells[winnerComp[i][1]] &&
-          this.cells[winnerComp[i][1]] === this.cells[winnerComp[i][2]]
-        ) {
-          winner = this.cells[winnerComp[i][0]];
-        }
-      }
-      if (!winner) {
-        let isDraw = true;
-        for (let i = 0; i < this.cells.length; i++) {
-          if (this.cells[i] == "") {
-            isDraw = false;
-            break;
-          }
-        }
-        if (isDraw) {
-          winner = "draw";
-        }
-      }
-      return winner;
-    },
+  },
+  components: {
+    Classic,
+    Unlimited,
+    Ultimate,
   },
 };
 </script>
 
-
-
-<template>
-  <div
-    class="bg-purple-400 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
-  >
-    <h1
-      class="text-5xl font-semibold text-gray-200 absolute top-20"
-      @click="this.resetGame()"
-    >
-      Tic Tac Toe
-    </h1>
-    <ul
-      class="flex flex-wrap flex-col w-80 justify-between content-between aspect-square"
-    >
-      <li
-        v-for="(cell, i) in cells"
-        :key="cell"
-        v-text="cells[i]"
-        @click="
-          play(i);
-          chooseWinner();
-        "
-        class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
-      ></li>
-    </ul>
-    <div
-    v-text="showResult(this.chooseWinner())"
-      class="result text-white text-3xl absolute bottom-28 font-semibold"
-    ></div>
-  </div>
-</template>
+<style scoped>
+ul:hover > :not(:hover) {
+  opacity: 0.1;
+}
+</style>
