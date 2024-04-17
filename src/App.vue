@@ -1,6 +1,8 @@
 // TODO: back-to-menu button in every page to get back to the choose-mode page
 <template>
-  <div class="w-full relative flex flex-col justify-center items-center">
+  <div
+    class="w-full h-[100vh] relative flex flex-col justify-center items-center"
+  >
     <ul
       class="sm:w-1/2 w-[165px] min-w-40 h-fit grid sm:gap-x-8 gap-x-4 gap-y-2 place-content-center grid-cols-1 sm:grid-cols-3"
       v-if="!selectedChoice"
@@ -22,13 +24,19 @@
     <Ultimate v-else-if="selectedChoice === 'Ultimate'" />
     <Unlimited v-else-if="selectedChoice === 'Unlimited'" />
 
-    <button
+    <!-- <img
       v-if="selectedChoice"
       @click="selectedChoice = null"
-      class="bg-red-500 p-1 px-2 absolute top-2 rounded-lg border-2 border-transparent hover:border-red-500 hover:bg-transparent hover:text-red-500 transition-all duration-300 text-white text-lg"
+      class="absolute top-2 left-2 w-12 sm:w-16 sm:left-10 sm:top-10 rotate-180 invert"
+      src="./assets/menu.png"
+      /> -->
+    <div
+      v-if="selectedChoice"
+      @click="selectedChoice = null"
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-red-600 text-red-600 font-semibold tracking-wide hover:border-transparent hover:bg-red-600 hover:text-white cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
     >
-      Get back to menu
-    </button>
+      return back
+    </div>
   </div>
 </template>
 

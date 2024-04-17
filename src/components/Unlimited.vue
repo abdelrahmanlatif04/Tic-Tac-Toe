@@ -9,7 +9,10 @@
         v-text="resultMessage"
         class="text-4xl font-semibold rotate-180 text-center"
       ></p>
-      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
+      <p
+        v-text="resultMessage"
+        class="text-4xl font-semibold text-center"
+      ></p>
     </div>
     <ul
       class="flex flex-wrap text-white relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
@@ -19,9 +22,7 @@
         :key="i"
         @click="handleCellClick(i)"
         v-text="cell"
-        :class="`${textCol(
-          i
-        )} aspect-square w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60`"
+        :class="`${textCol(i)} aspect-square w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60`"
       ></li>
     </ul>
   </div>
@@ -32,18 +33,9 @@ export default {
   name: "App",
   data() {
     return {
-      cells: [
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-        { inner: ["", "", "", "", "", "", "", "", ""], state },
-      ],
+      cells: ["", "", "", "", "", "", "", "", ""],
       round: "X",
+      filledCells: [],
     };
   },
   computed: {
@@ -64,12 +56,8 @@ export default {
     },
   },
   methods: {
-    textCol(i) {
-      if (
-        this.filledCells.length == 6 &&
-        i == this.filledCells[0].index &&
-        !this.chooseWinner()
-      ) {
+    textCol(i){
+      if(this.filledCells.length == 6&&i == this.filledCells[0].index&&!this.chooseWinner()){
         return "text-cyan-800 ";
       }
     },
