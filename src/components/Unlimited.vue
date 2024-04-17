@@ -27,7 +27,7 @@
     </ul>
   </div>
 </template>
-
+// TODO: can't win before 3 moves for each player
 <script>
 export default {
   name: "App",
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     textCol(i){
-      if(this.filledCells.length == 6&&i == this.filledCells[0].index){
+      if(this.filledCells.length == 6&&i == this.filledCells[0].index&&!this.chooseWinner()){
         return "text-cyan-800 ";
       }
     },
@@ -86,7 +86,7 @@ export default {
         this.cells = ["", "", "", "", "", "", "", "", ""];
         this.round = "X";
         this.filledCells = [];
-      }, 1000);
+      }, 1500);
     },
     chooseWinner() {
       let winner = null;

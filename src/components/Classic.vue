@@ -3,10 +3,13 @@
     class="bg-blue-500 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
   >
     <div
-      class="text-white absolute flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
+      class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
     >
-      <p v-text="resultMessage" class="text-4xl font-semibold rotate-180 w-full text-center"></p>
-      <p v-text="resultMessage" class="text-4xl font-semibold w-full text-center"></p>
+      <p
+        v-text="resultMessage"
+        class="text-4xl font-semibold rotate-180 text-center"
+      ></p>
+      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
     </div>
     <ul
       class="flex flex-wrap relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
@@ -62,7 +65,7 @@ export default {
       setTimeout(() => {
         this.cells = ["", "", "", "", "", "", "", "", ""];
         this.round = "X";
-      }, 1000);
+      }, 1500);
     },
     chooseWinner() {
       let winner = null;
