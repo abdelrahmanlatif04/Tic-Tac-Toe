@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       cells: [
-        { inner: ["X", "X", "O", "O", "O", "X", "X", "O", ""], state: null },
+        { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
