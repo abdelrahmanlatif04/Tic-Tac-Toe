@@ -22,7 +22,7 @@
     </ul>
     <Classic v-if="selectedChoice === 'Classic'" />
     <Ultimate v-else-if="selectedChoice === 'Ultimate'" />
-    <Unlimited v-else-if="selectedChoice === 'Unlimited'" />
+    <Infinity v-else-if="selectedChoice === 'Infinity'" />
     <div
       v-if="selectedChoice"
       @click="selectedChoice = null"
@@ -35,7 +35,7 @@
 
 <script>
 import Ultimate from "./components/Ultimate.vue";
-import Unlimited from "./components/Unlimited.vue";
+import Infinity from "./components/Infinity.vue";
 import Classic from "./components/Classic.vue";
 import img1 from "./assets/infinity.png";
 import img2 from "./assets/classic.png";
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       choices: [
-        { name: "Unlimited", img: img1 },
+        { name: "Infinity", img: img1 },
         { name: "Classic", img: img2 },
         { name: "Ultimate", img: img3 },
       ],
@@ -60,7 +60,7 @@ export default {
   },
   components: {
     Classic,
-    Unlimited,
+    Infinity,
     Ultimate,
   },
 };
