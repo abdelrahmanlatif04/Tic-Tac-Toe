@@ -15,7 +15,9 @@
       <div
         v-for="(senior, i) in cells"
         :key="senior"
-        :class="`grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative`"
+        :class="`senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative after:content-['${displayJuniorWinner(
+          i
+        )}'] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 text-8xl after:font-mono after:-translate-y-1/2 after:text-white`"
       >
         <div
           v-for="(cell, j) in senior.inner"
@@ -24,11 +26,10 @@
           @click="handleCellClick(i, j)"
           :class="`${changeStyle(
             i
-          )} flex items-center justify-center text-2xl hover:opacity-65 cursor-pointer lg:text-4xl md:text-3xl aspect-square`"
+          )} flex items-center justify-center text-2xl hover:opacity-65 cursor-pointer lg:text-4xl md:text-3xl aspect-square `"
         ></div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -38,9 +39,9 @@ export default {
   data() {
     return {
       cells: [
-        { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-        { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-        { inner: ["", "", "", "", "", "", "", "", ""], state: null },
+        { inner: ["", "X", "X", "", "", "", "", "", ""], state: null },
+        { inner: ["", "", "", "", "", "X", "", "", "X"], state: null },
+        { inner: ["", "", "", "", "", "O", "", "", "O"], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         { inner: ["", "", "", "", "", "", "", "", ""], state: null },
@@ -54,7 +55,7 @@ export default {
   },
   computed: {
     resultMessage() {
-      const winner = null;
+      const winner = this.chooseSeniorWinner();
       if (winner === "X") {
         this.resetGame();
         return "Player X won 🥳!!";
@@ -70,28 +71,52 @@ export default {
     },
   },
   methods: {
+    displayJuniorWinner(i) {
+      if (this.cells[i].state === "O" || this.cells[i].state === "X") {
+        return this.cells[i].state;
+      } else if (this.cells[i].state === "d") {
+        return this.cells[i].state;
+      }
+    },
     handleCellClick(i, j) {
       let temp = this.round;
-      if (
-        !this.cells[i].inner[j] &&
-        (this.current == null || i == this.current)
-      ) {
-        this.cells[i].inner[j] = temp;
-        this.switchRound();
-        this.current = j;
-        this.chooseJuniorWinner(i);
+      if (!this.chooseSeniorWinner()) {
+        if (
+          !this.cells[i].inner[j] &&
+          (this.current == null || i == this.current) &&
+          !this.cells[i].state
+        ) {
+          this.cells[i].inner[j] = temp;
+          this.switchRound();
+          this.chooseJuniorWinner(i);
+          if (this.cells[j].state) {
+            this.current = null;
+          } else {
+            this.current = j;
+          }
+        }
       }
     },
     switchRound() {
       this.round = this.round === "X" ? "O" : "X";
     },
     changeStyle(j) {
-      if (this.current == null) {
-        return "bg-blue-400";
-      } else if (this.current != j) {
-        return "bg-gray-400";
+      if (!this.chooseSeniorWinner()) {
+        if (this.cells[j].state) {
+          return "bg-red-600";
+        } else {
+          if (this.current == null) {
+            return "bg-blue-400";
+          } else {
+            if (this.current != j) {
+              return "bg-gray-400";
+            } else {
+              return "bg-blue-400";
+            }
+          }
+        }
       } else {
-        return "bg-blue-400";
+        return "bg-gray-400";
       }
     },
     resetGame() {
@@ -108,6 +133,7 @@ export default {
           { inner: ["", "", "", "", "", "", "", "", ""], state: null },
         ];
         this.round = "X";
+        this.current = null;
       }, 1500);
     },
     chooseJuniorWinner(x) {
@@ -146,12 +172,48 @@ export default {
         }
       }
       if (winner) {
-        cell.state = winner; 
-        console.log(`${x}'winners is ${winner}`);
+        cell.state = winner;
       }
+    },
+    chooseSeniorWinner() {
+      let winner = null;
+      const winnerComp = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+      for (let i = 0; i < winnerComp.length; i++) {
+        if (
+          this.cells[winnerComp[i][0]].state !== "" &&
+          this.cells[winnerComp[i][0]].state ===
+            this.cells[winnerComp[i][1]].state &&
+          this.cells[winnerComp[i][1]].state ===
+            this.cells[winnerComp[i][2]].state
+        ) {
+          winner = this.cells[winnerComp[i][0]].state;
+          break;
+        }
+      }
+
+      if (!winner) {
+        let draw = true;
+        for (let i = 0; i < 9; i++) {
+          if (!this.cells[i].state) {
+            draw = false;
+            break;
+          }
+        }
+        if (draw) {
+          winner = "draw";
+        }
+      }
+      return winner;
     },
   },
 };
 </script>
-
-<style></style>
