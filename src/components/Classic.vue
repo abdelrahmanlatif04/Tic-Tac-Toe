@@ -22,6 +22,12 @@
         class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
       ></li>
     </ul>
+    <router-link
+    class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-red-600 text-red-600 font-semibold tracking-wide hover:border-transparent hover:bg-red-600 hover:text-white cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+    to="/"
+  >
+    change mood
+  </router-link>
   </div>
 </template>
 
