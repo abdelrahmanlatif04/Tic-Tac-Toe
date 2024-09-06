@@ -1,6 +1,6 @@
 // TODO: back-to-menu button in every page to get back to the choose-mode page
 <template>
-  <div class="bg-slate-400">
+  <div class="bg-gray-100">
     <router-view></router-view>
   </div>
 </template>

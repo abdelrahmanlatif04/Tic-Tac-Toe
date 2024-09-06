@@ -9,10 +9,7 @@
         v-text="resultMessage"
         class="text-4xl font-semibold rotate-180 text-center"
       ></p>
-      <p
-        v-text="resultMessage"
-        class="text-4xl font-semibold text-center"
-      ></p>
+      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
     </div>
     <ul
       class="flex flex-wrap text-white relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
@@ -22,15 +19,17 @@
         :key="i"
         @click="handleCellClick(i)"
         v-text="cell"
-        :class="`${textCol(i)} aspect-square w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60`"
+        :class="`${textCol(
+          i
+        )} aspect-square w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60`"
       ></li>
     </ul>
     <router-link
-    class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-red-600 text-red-600 font-semibold tracking-wide hover:border-transparent hover:bg-red-600 hover:text-white cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
-    to="/"
-  >
-    change mood
-  </router-link>
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white   text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-black cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+      to="/"
+    >
+      Back to menu
+    </router-link>
   </div>
 </template>
 // TODO: can't win before 3 moves for each player
@@ -62,8 +61,12 @@ export default {
     },
   },
   methods: {
-    textCol(i){
-      if(this.filledCells.length == 6&&i == this.filledCells[0].index&&!this.chooseWinner()){
+    textCol(i) {
+      if (
+        this.filledCells.length == 6 &&
+        i == this.filledCells[0].index &&
+        !this.chooseWinner()
+      ) {
         return "text-cyan-800 ";
       }
     },
