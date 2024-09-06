@@ -1,17 +1,6 @@
 // TODO: back-to-menu button in every page to get back to the choose-mode page
 <template>
-  <div
-    class="w-full h-[100vh] relative flex flex-col justify-center items-center"
-  >
-    <ul v-if="!selectedChoice">
-      <li
-        @click="chooseMode(choice)"
-        v-for="choice in choices"
-        :key="choice"
-      >
-        
-      </li>
-    </ul>
+  <div class="bg-slate-400">
     <router-view></router-view>
   </div>
 </template>
@@ -26,13 +15,7 @@ export default {
         { name: "Classic", img: "/Classic.png" },
         { name: "Ultimate", img: "/Ultimate.png" },
       ],
-      selectedChoice: null,
     };
-  },
-  methods: {
-    chooseMode(selected) {
-      this.selectedChoice = selected.name;
-    },
   },
 };
 </script>
