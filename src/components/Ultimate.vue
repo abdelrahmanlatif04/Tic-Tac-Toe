@@ -14,14 +14,14 @@
     >
       <div
         v-for="(senior, i) in cells"
-        :key="senior"
+        :key="i"
         :class="`senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative after:content-['${displayJuniorWinner(
           i
         )}'] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 text-8xl after:font-mono after:-translate-y-1/2 after:text-white`"
       >
         <div
           v-for="(cell, j) in senior.inner"
-          :key="cell"
+          :key="j"
           v-text="cell"
           @click="handleCellClick(i, j)"
           :class="`${changeStyle(
@@ -31,7 +31,7 @@
       </div>
     </div>
     <router-link
-      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white   text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-black cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-black cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
       to="/"
     >
       Back to menu
