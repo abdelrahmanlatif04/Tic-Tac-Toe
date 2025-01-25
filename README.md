@@ -2,7 +2,7 @@
 
 This is a simple and interactive Tic-Tac-Toe game built using **Vue.js** for the front-end logic and **Tailwind CSS** for styling. The game offers three exciting modes: **Classic**, **Infinity**, and **Ultimate**. Each mode presents a unique twist on the traditional Tic-Tac-Toe gameplay.
 
-### [Try it Now](https://amazing-tic-tac-toe.vercel.app/)
+### [Try it Now](https://tic-tac-toe-hero.vercel.app/)
 
 ## Features
 

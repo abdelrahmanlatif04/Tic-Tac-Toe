@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[100vh] w-full flex text-center bg-orange-500">
+  <div class="h-[100vh] w-full flex text-center bg-orange-500 ">
     <div
       class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
     >
@@ -15,18 +15,25 @@
       <div
         v-for="(senior, i) in cells"
         :key="i"
-        :class="`senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative after:content-['${displayJuniorWinner(
-          i
-        )}'] after:absolute after:top-1/2 after:left-1/2 after:-translate-x-1/2 text-8xl after:font-mono after:-translate-y-1/2 after:text-white`"
+        class="senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative"
+        :class="senior.state ? 'opacity-80' : ''"
       >
+        <img
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3"
+          :class="senior.state ? '' : 'hidden'"
+          :src="`/${senior.state}.png`"
+        />
         <div
           v-for="(cell, j) in senior.inner"
           :key="j"
           v-text="cell"
           @click="handleCellClick(i, j)"
-          :class="`${changeStyle(
-            i
-          )} flex items-center justify-center text-2xl hover:opacity-65 cursor-pointer lg:text-4xl md:text-3xl aspect-square `"
+          :class="`${changeStyle(i)} 
+           ${
+             !senior.state && changeStyle(i) != 'bg-gray-400'
+               ? 'hover:opacity-65 cursor-pointer'
+               : 'cursor-default'
+           } flex items-center justify-center text-2xl lg:text-4xl md:text-3xl aspect-square `"
         ></div>
       </div>
     </div>
@@ -79,8 +86,9 @@ export default {
   methods: {
     displayJuniorWinner(i) {
       if (this.cells[i].state === "O" || this.cells[i].state === "X") {
+        console.log(this.cells[i].state);
         return this.cells[i].state;
-      } else if (this.cells[i].state === "d") {
+      } else if (this.cells[i].state === "T") {
         return this.cells[i].state;
       }
     },
@@ -127,19 +135,7 @@ export default {
     },
     resetGame() {
       setTimeout(() => {
-        this.cells = [
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-          { inner: ["", "", "", "", "", "", "", "", ""], state: null },
-        ];
-        this.round = "X";
-        this.current = null;
+        location.reload();
       }, 1500);
     },
     chooseJuniorWinner(x) {
@@ -174,7 +170,7 @@ export default {
           }
         }
         if (draw) {
-          winner = "d";
+          winner = "T";
         }
       }
       if (winner) {
