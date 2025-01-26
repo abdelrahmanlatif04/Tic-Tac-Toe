@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[100vh] w-full flex text-center bg-orange-500 ">
+  <div class="h-[100vh] w-full flex text-center bg-orange-500">
     <div
       class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
     >
@@ -38,7 +38,7 @@
       </div>
     </div>
     <router-link
-      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-black cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-orange-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
       to="/"
     >
       Back to menu

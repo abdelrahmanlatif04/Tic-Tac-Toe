@@ -25,14 +25,13 @@
       ></li>
     </ul>
     <router-link
-      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white   text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-black cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-cyan-800 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
       to="/"
     >
       Back to menu
     </router-link>
   </div>
 </template>
-// TODO: can't win before 3 moves for each player
 <script>
 export default {
   name: "App",
