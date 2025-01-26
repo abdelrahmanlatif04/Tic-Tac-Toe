@@ -1,11 +1,28 @@
 <template>
-  <div class="bg-gray-100 font-mono">
-    <router-view></router-view>
+  <div class="bg-gray-100 font-mono overflow-hidden w-screen h-screen">
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
   name: "App",
-}
+};
 </script>
+
+<style>
+.v-enter-active,
+.v-leave-active,
+.v-enter-to,
+.v-leave-from {
+  transition: all 1s linear;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translate(0, -100px);
+}
+</style>

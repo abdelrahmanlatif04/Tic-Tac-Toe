@@ -1,33 +1,38 @@
 <template>
-  <div
-    class="bg-blue-500 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
-  >
+  <div class="pb-52 bg-blue-500">
     <div
-      class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
+      class="bg-blue-500 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
     >
-      <p
-        v-text="resultMessage"
-        class="text-4xl font-semibold rotate-180 text-center"
-      ></p>
-      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
+      <div
+        class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
+      >
+        <p
+          v-text="resultMessage"
+          class="text-4xl font-semibold rotate-180 text-center"
+        ></p>
+        <p
+          v-text="resultMessage"
+          class="text-4xl font-semibold text-center"
+        ></p>
+      </div>
+      <ul
+        class="flex flex-wrap relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
+      >
+        <li
+          v-for="(cell, i) in cells"
+          :key="i"
+          @click="handleCellClick(i)"
+          v-text="cell"
+          class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
+        ></li>
+      </ul>
+      <router-link
+        class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-blue-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+        to="/"
+      >
+        Back to menu
+      </router-link>
     </div>
-    <ul
-      class="flex flex-wrap relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
-    >
-      <li
-        v-for="(cell, i) in cells"
-        :key="i"
-        @click="handleCellClick(i)"
-        v-text="cell"
-        class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
-      ></li>
-    </ul>
-    <router-link
-      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white   text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-blue-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
-      to="/"
-    >
-      Back to menu
-    </router-link>
   </div>
 </template>
 
