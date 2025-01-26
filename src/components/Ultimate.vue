@@ -84,14 +84,6 @@ export default {
     },
   },
   methods: {
-    displayJuniorWinner(i) {
-      if (this.cells[i].state === "O" || this.cells[i].state === "X") {
-        console.log(this.cells[i].state);
-        return this.cells[i].state;
-      } else if (this.cells[i].state === "T") {
-        return this.cells[i].state;
-      }
-    },
     handleCellClick(i, j) {
       let temp = this.round;
       if (!this.chooseSeniorWinner()) {
@@ -114,19 +106,15 @@ export default {
     switchRound() {
       this.round = this.round === "X" ? "O" : "X";
     },
-    changeStyle(j) {
+    changeStyle(i) {
       if (!this.chooseSeniorWinner()) {
-        if (this.cells[j].state) {
+        if (this.cells[i].state) {
           return "bg-red-600";
         } else {
           if (this.current == null) {
             return "bg-blue-400";
           } else {
-            if (this.current != j) {
-              return "bg-gray-400";
-            } else {
-              return "bg-blue-400";
-            }
+            return this.current == i ? "bg-blue-400" : "bg-gray-400";
           }
         }
       } else {
@@ -205,14 +193,10 @@ export default {
       if (!winner) {
         let draw = true;
         for (let i = 0; i < 9; i++) {
-          if (!this.cells[i].state) {
-            draw = false;
-            break;
-          }
+          draw = this.cells[i].state;
+          if (!draw) break;
         }
-        if (draw) {
-          winner = "draw";
-        }
+        winner = draw ? "draw" : null;
       }
       return winner;
     },
