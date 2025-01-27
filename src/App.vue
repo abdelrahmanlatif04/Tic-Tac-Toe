@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style>
-.v-enter-active,
+/*.v-enter-active,
 .v-leave-active {
   transition: all 0.7s linear;
 }
@@ -22,5 +22,6 @@ export default {
 .v-leave-to {
   opacity: 0;
   transform: translate(0, -100px);
-}
+}*/
+/*Temporarliy closed*/
 </style>

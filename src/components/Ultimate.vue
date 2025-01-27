@@ -1,50 +1,58 @@
 <template>
-  <div class="h-[100vh] w-full flex text-center bg-orange-500">
-    <div
-      class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
-    >
-      <p
-        v-text="resultMessage"
-        class="text-4xl font-semibold rotate-180 text-center"
-      ></p>
-      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
-    </div>
-    <div
-      class="body grid grid-cols-3 gap-1 font-semibold bg-gray-300 bg-border w-[430px] aspect-square m-auto"
-    >
+  <div class="pb-52 bg-blue-500">
+    <div class="h-[100vh] w-full flex text-center bg-orange-500">
       <div
-        v-for="(senior, i) in cells"
-        :key="i"
-        class="senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative"
-        :class="senior.state ? 'opacity-80' : ''"
+        class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
       >
-        <div v-if="senior.state" class="absolute z-10 w-full h-full bg-black bg-opacity-65">
-          <img
-            class="invert absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3"
-            :src="`/${senior.state}.png`"
-          />
-        </div>
+        <p
+          v-text="resultMessage"
+          class="text-4xl font-semibold rotate-180 text-center"
+        ></p>
+        <p
+          v-text="resultMessage"
+          class="text-4xl font-semibold text-center"
+        ></p>
+      </div>
+      <div
+        class="body grid grid-cols-3 gap-1 font-semibold bg-gray-300 bg-border w-[430px] aspect-square m-auto"
+      >
         <div
-          v-for="(cell, j) in senior.inner"
-          :key="j"
-          @click="handleCellClick(i, j)"
-          :class="`${changeStyle(i)} 
+          v-for="(senior, i) in cells"
+          :key="i"
+          class="senior grid grid-cols-3 gap-1 w-full bg-orange-500 p-1 z-10 relative"
+          :class="senior.state ? 'opacity-80' : ''"
+        >
+          <div
+            v-if="senior.state"
+            class="absolute z-10 w-full h-full bg-black bg-opacity-65"
+          >
+            <img
+              class="invert absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3"
+              :src="`/${senior.state}.png`"
+            />
+          </div>
+          <div
+            v-for="(cell, j) in senior.inner"
+            :key="j"
+            @click="handleCellClick(i, j)"
+            :class="`${changeStyle(i)} 
            ${
              !senior.state && changeStyle(i) != 'bg-gray-400'
                ? 'hover:opacity-65 cursor-pointer'
                : 'cursor-default'
            } flex items-center justify-center text-2xl lg:text-4xl md:text-3xl aspect-square `"
-        >
-          <img v-if="cell" :src="'/' + cell + '.png'" class="w-3/5 invert" />
+          >
+            <img v-if="cell" :src="'/' + cell + '.png'" class="w-3/5 invert" />
+          </div>
         </div>
       </div>
+      <router-link
+        class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-orange-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+        to="/"
+      >
+        Back to menu
+      </router-link>
     </div>
-    <router-link
-      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-orange-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
-      to="/"
-    >
-      Back to menu
-    </router-link>
   </div>
 </template>
 
