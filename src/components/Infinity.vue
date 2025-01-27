@@ -1,40 +1,39 @@
 <template>
-  <div class="pb-52 bg-cyan-800">
+  <div
+    class="bg-cyan-800 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
+  >
     <div
-      class="bg-cyan-800 w-full h-[100vh] flex flex-col justify-center items-center relative gap-10"
+      class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
     >
-      <div
-        class="text-white absolute w-full flex flex-col justify-between left-1/2 top-1/2 h-2/3 -translate-x-1/2 -translate-y-1/2"
-      >
-        <p
-          v-text="resultMessage"
-          class="text-4xl font-semibold rotate-180 text-center"
-        ></p>
-        <p
-          v-text="resultMessage"
-          class="text-4xl font-semibold text-center"
-        ></p>
-      </div>
-      <ul
-        class="flex flex-wrap text-white relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
-      >
-        <li
-          v-for="(cell, i) in cells"
-          :key="i"
-          @click="handleCellClick(i)"
-          v-text="cell"
-          :class="`${textCol(
-            i
-          )} aspect-square w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60`"
-        ></li>
-      </ul>
-      <router-link
-        class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-cyan-800 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
-        to="/"
-      >
-        Back to menu
-      </router-link>
+      <p
+        v-text="resultMessage"
+        class="text-4xl font-semibold rotate-180 text-center"
+      ></p>
+      <p v-text="resultMessage" class="text-4xl font-semibold text-center"></p>
     </div>
+    <ul
+      class="flex flex-wrap text-white relative z-10 flex-col w-80 justify-between content-between aspect-square rounded-2xl overflow-hidden"
+    >
+      <li
+        v-for="(cell, i) in cells"
+        :key="i"
+        @click="handleCellClick(i)"
+        class="w-[33%] h-[33%] flex font-bold items-center justify-center text-6xl bg-yellow-600 cursor-pointer hover:opacity-60"
+      >
+        <img
+          :class="`${textCol(i)}`"
+          v-if="cell"
+          :src="'/' + cell + '.png'"
+          class="w-3/5 invert"
+        />
+      </li>
+    </ul>
+    <router-link
+      class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-cyan-800 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"
+      to="/"
+    >
+      Back to menu
+    </router-link>
   </div>
 </template>
 <script>
@@ -71,7 +70,7 @@ export default {
         i == this.filledCells[0].index &&
         !this.chooseWinner()
       ) {
-        return "text-cyan-800 ";
+        return "opacity-55 ";
       }
     },
     handleCellClick(index) {
@@ -96,9 +95,7 @@ export default {
     },
     resetGame() {
       setTimeout(() => {
-        this.cells = ["", "", "", "", "", "", "", "", ""];
-        this.round = "X";
-        this.filledCells = [];
+        location.reload();
       }, 1500);
     },
     chooseWinner() {

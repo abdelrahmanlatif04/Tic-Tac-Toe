@@ -22,9 +22,10 @@
           v-for="(cell, i) in cells"
           :key="i"
           @click="handleCellClick(i)"
-          v-text="cell"
           class="aspect-square w-[33%] h-[33%] flex items-center justify-center text-6xl bg-yellow-300 cursor-pointer hover:opacity-60 text-white"
-        ></li>
+        >
+          <img v-if="cell" :src="'/' + cell + '.png'" class="w-3/5 invert" />
+        </li>
       </ul>
       <router-link
         class="absolute left-1/2 -translate-x-1/2 top-2 w-full text-center py-2 bg-transparent border-2 border-white text-white font-semibold tracking-wide hover:border-transparent hover:bg-white hover:text-blue-500 cursor-pointer transition-all duration-300 max-w-80 rounded-xl text-2xl"

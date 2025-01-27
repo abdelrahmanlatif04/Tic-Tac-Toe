@@ -14,10 +14,8 @@ export default {
 
 <style>
 .v-enter-active,
-.v-leave-active,
-.v-enter-to,
-.v-leave-from {
-  transition: all 1s linear;
+.v-leave-active {
+  transition: all 0.7s linear;
 }
 
 .v-enter-from,
